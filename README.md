@@ -1,13 +1,13 @@
-# 📘 C Mini Projects – Devarc
+# C Mini Projects 
 
-Welcome to this C Mini Projects repository! 🚀  
+Welcome to this C Mini Projects repository! 
 This repo is part of the Devarc initiative by the GITAM GitHub Club and contains simple starter-level **C programs** that contributors can improve and enhance.
 
 Each program is intentionally basic so contributors can rewrite, optimise, or expand features **inside the existing programs**.
 
 ---
 
-## 📂 Projects Included
+## Projects Included
 
 This repository currently contains the following C mini-programs:
 
@@ -28,7 +28,7 @@ These programs are structured in a simple and beginner-friendly way so contribut
 
 ---
 
-## ⚠️ Contribution Rules
+## Contribution Rules
 
 To keep contributions consistent:
 
@@ -38,30 +38,30 @@ To keep contributions consistent:
 
 ---
 
-## 💡 What You Can Improve
+## What You Can Improve
 
-### 🔹 Feature Enhancements
+### ⭐️ Feature Enhancements
 - Add new menu options  
 - Add edit/remove features  
 - Add new fields  
 - Add more quiz questions  
 - Add sorting/searching functions  
 
-### 🔹 Technical Improvements
+### ⭐️ Technical Improvements
 - Use structs, pointers, modular functions  
 - Add file handling (save and load data)  
 - Improve performance and readability  
 
-### 🔹 User Experience
+### ⭐️ User Experience
 - Better formatting  
 - Clearer input prompts  
 - Error handling & validation  
 
----
+--- 
 
-## 🤝 How to Contribute
+## How to Contribute
 
-To make a contribution, follow these steps (explained fully in CONTRIBUTING.md):
+To make a contribution, follow these steps (explained fully in [Contributing Guide](https://github.com/github-community-gitam/EPOCH4.0-CProject/blob/main/CONTRIBUTING.md)):
 
 - Fork the repository  
 - Clone your fork  
@@ -71,12 +71,9 @@ To make a contribution, follow these steps (explained fully in CONTRIBUTING.md):
 - Commit and push  
 - Open a Pull Request  
 
-📄 **Full guide:**  
-👉 `CONTRIBUTING.md`
-
 ---
 
-## 🎯 Purpose of This Repository
+## Purpose of This Repository
 
 This repository is designed to help contributors:
 
@@ -89,9 +86,4 @@ Beginners and experienced contributors are both welcome!
 
 ---
 
-## 💙 Thank You
-
-Thank you for contributing to this repository!  
-Your improvements, big or small, help make this project better for everyone.  
-
-Happy coding and keep contributing! 🚀
+📌 **Thank you for contributing to this repository!  Your improvements, big or small, help make this project better for everyone. Happy coding and keep contributing!**
