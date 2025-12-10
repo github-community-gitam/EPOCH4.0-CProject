@@ -29,7 +29,7 @@ This creates your own copy of the project in your GitHub account.
 Download it to your computer:
 
 ```bash
-git clone https://github.com/<username>/c-project.git
+git clone https://github.com/github-community-gitam/EPOCH4.0-CProject.git
 ```
 
 ### 3️⃣ Dependencies  
