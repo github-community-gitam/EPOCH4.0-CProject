@@ -1,174 +1,73 @@
-# Contributing Guide
+# Contributing Guidelines
 
-Welcome! We’re excited that you want to contribute to this project.  
-This guide explains everything you need to know, from forking the repository to getting your pull request merged.
+Thank you for your interest in contributing to GameOfAlgo! This project will appreciate any type of contribution whether it is bug fixes or improving efficiency. Every contribution big or small is appreciated! 
 
----
+Please read the guidelines below to ensure smooth and meaningful contributions.
 
-## What Does “Contributing” Mean?
+## How to Contribute
 
-Contributing means helping improve the project by:
+1. Fork the repository
 
-- Fixing bugs  
-- Adding new features **inside the existing programs**  
-- Improving documentation  
-- Suggesting ideas  
-- Cleaning or optimizing code  
+2. Create a new branch
 
-
----
-
-## Before You Start
-
-### 1️⃣ Fork the Repository  
-
-This creates your own copy of the project in your GitHub account.
-
-### 2️⃣ Clone Your Fork  
-
-Download it to your computer:
-
-```bash
-git clone https://github.com/<username>/EPOCH4.0-CProject.git
+```
+git checkout -b <feature-name>
 ```
 
-### 3️⃣ Dependencies  
+3. Make your changes
 
-No dependencies required — this is a pure C project.
+4. Stage your changes
 
----
-
-## Create a New Branch
-
-Before making any changes, create your own branch:
-
-```bash
-git checkout -b my-feature
+```
+git add <your-changes>
 ```
 
-Example branch names:
+5. Commit your changes
 
-- add-search-feature  
-- fix-contact-bug  
-- improve-output-format  
-- optimize-student-logic  
+```
+git commit -m "Describe your changes here"
+ ```
 
-Branches keep your work organized and separate from the main project.
+6. Push the changes to your fork
 
----
-
-## Make Your Changes
-
-Inside the existing C programs, you may:
-
-- Add new features  
-- Improve logic  
-- Add structs, functions, pointers  
-- Add search or sorting  
-- Add file handling  
-- Improve menu or output formatting  
-- Fix bugs  
-- Clean or optimize code  
-
-Keep your changes **small, focused, and clean**.
-
----
-
-## Test Your Changes
-
-Before committing:
-
-- Compile the program  
-- Run it  
-- Test your new feature  
-- Ensure nothing else breaks  
-
-Manual testing is enough.
-
----
-
-## Stage Your Changes (git add)
-
-You must stage files before committing.
-
-### Stage ALL changes:
-
-```bash
-git add .
+```
+git push origin <branch-name>
 ```
 
-### Stage ONLY one file:
+7. Open a Pull Request 
 
-```bash
-git add filename.c
-```
+A good PR consists of:
 
-Use whichever fits your workflow.
+- A short, clear title
+- Explanation of what changed and why
+- Screenshots or logs (if your change affects output/visuals)
 
----
+## Pull Request Rules
 
-## Commit Your Changes
+To maintain quality and consistency across GameOfAlgo:
 
-Save your progress with a meaningful commit message:
+- Create an Issue first, and link it to your PR
+- Code must run without errors
+- Keep Jupyter Notebooks clean
+- Remove unnecessary prints/output
+- Keep cells organized
+- Document any new feature or modification
+- Use good naming conventions and folder structure
+- Add comments wherever your logic might be unclear
 
-```bash
-git commit -m "Add search feature to Contact Book"
-```
+## Issue Guidelines
 
-❌ Bad:  
-update stuff
+Before creating a new issue:
 
-✅ Good:  
-Improve input validation in Student Management System
+- Check if an issue already exists
+- Provide a detailed description of the bug, idea, or enhancement
+- Include screenshots or error messages when possible
+- Suggest a possible fix (optional but helpful)
 
----
+## Testing Your Changes
 
-## Push Your Branch
+Before submitting a pull request, double-check for finding any error.
 
-Send your changes to GitHub:
+## Code of Conduct
 
-```bash
-git push origin my-feature
-```
-
----
-
-## Open a Pull Request (PR)
-
-After pushing your branch:
-
-1. Go to your repository on GitHub  
-2. Click **Open Pull Request**  
-3. Write a clear description:
-   - What you changed  
-   - Why you changed it  
-   - Any notes for the reviewers  
-
-Clear, well-written PRs are merged faster.
-
----
-
-## Code Review
-
-A project maintainer will:
-
-- Review your code  
-- Suggest improvements (normal!)  
-- Approve and merge your PR.  
-
-Don’t worry if you're asked to make changes, it's part of the process.
-
----
-
-## 🌱 Tips for Beginners
-
-- Don’t fear mistakes — they help you learn  
-- Start small  
-- Keep pull requests simple  
-- Ask for help anytime  
-- Write clean commit messages  
-- Submit one feature per PR  
-
----
-
-## Happy coding! 
+Thank You! Your effort helps improve this project and supports the open-source community. Feel free to reach out by opening an issue if you have any questions!
