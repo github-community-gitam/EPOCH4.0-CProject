@@ -1,6 +1,7 @@
 # Contributing Guidelines
 
-Thank you for your interest in contributing to GameOfAlgo! This project will appreciate any type of contribution whether it is bug fixes or improving efficiency. Every contribution big or small is appreciated! 
+Thank you for your interest in contributing to C Mini Projects!
+Any type of contribution — bug fixes, optimizations, or improvements — is truly appreciated. Every contribution, big or small, helps enhance this project!
 
 Please read the guidelines below to ensure smooth and meaningful contributions.
 
@@ -44,16 +45,16 @@ A good PR consists of:
 
 ## Pull Request Rules
 
-To maintain quality and consistency across GameOfAlgo:
+To maintain quality and consistency across C Mini Projects:
 
 - Create an Issue first, and link it to your PR
-- Code must run without errors
-- Keep Jupyter Notebooks clean
-- Remove unnecessary prints/output
-- Keep cells organized
+- Code must compile and run without errors or warnings
+- Remove unnecessary prints, unused variables, and dead code
+- Keep files clean, readable, and properly structured
 - Document any new feature or modification
-- Use good naming conventions and folder structure
+- Use meaningful variable/function names and consistent folder structure
 - Add comments wherever your logic might be unclear
+- Follow standard C formatting and indentation
 
 ## Issue Guidelines
 
@@ -70,4 +71,5 @@ Before submitting a pull request, double-check for finding any error.
 
 ## Code of Conduct
 
-Thank You! Your effort helps improve this project and supports the open-source community. Feel free to reach out by opening an issue if you have any questions!
+Thank you! Your contributions help improve this project and support the open-source community.
+If you have any questions, feel free to reach out by opening an issue.
