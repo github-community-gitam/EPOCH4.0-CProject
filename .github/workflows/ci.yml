@@ -1,0 +1,71 @@
+name: C Project Continuous Integration
+
+# 1. EVENT: Run on every push or Pull Request to the main branch
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# 2. JOBS: Define the tasks
+jobs:
+  build_c_project:
+    # Use a standard Linux runner
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout repository code
+        uses: actions/checkout@v4 
+        
+      # Step 2: Install the C compiler (GCC)
+      # This command ensures all necessary compiler tools are available.
+      - name: Install C compiler tools
+        run: sudo apt-get update && sudo apt-get install -y build-essential
+        
+      # Step 3: Compile all C files into a single executable
+      # This is the "Build" step. It uses a single GCC command.
+      # The '-o c_project' means 'output the executable as c_project'.
+      - name: Compile the C Project Executable
+        run: gcc -o c_project *.c
+        # Note: If this command fails (due to a syntax error in any of your .c files),
+        # the entire pipeline will stop and mark the commit as failed.
+        
+      # Step 4: Verify the build success (Optional, but good practice)
+      - name: Check for compiled executable
+        run: |
+          if [ -f c_project ]; then
+            echo "SUCCESS: The C project compiled successfully and created 'c_project'."
+          else
+            echo "FAILURE: Compilation failed."
+            exit 1 # This explicitly fails the GitHub Action step
+          fi
+      # Step 5: Save the compiled executable as an artifact
+      - name: Upload compiled executable as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-c-executable
+          path: c_project  # Save the file named 'c_project'
+        
+        deploy:
+    # Important! This job will only run if the 'build_c_project' job passed successfully.
+    needs: build_c_project 
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Download the compiled file from the first job
+      - name: Download the compiled artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: compiled-c-executable
+          
+      # Step 2: Simulate the Deployment (The CD step)
+      # In a real-world scenario, this would be a script to copy the file 
+      # to a production server, but we'll print a message.
+      - name: Verify artifact and simulate deployment
+        run: |
+          ls -l # Check that 'c_project' is now in this job's directory
+          echo "Deployment initiated for the C executable..."
+          # In a real CD environment, this line would be replaced by a command
+          # to deploy to a cloud server, like 'scp c_project user@server:/app/'.
+          echo "SUCCESS: Deployment simulation complete."
