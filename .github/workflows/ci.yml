@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  # Job 1: CI (Build, Test, and Create Artifact)
+  # Job 1: CI (Build, Test, and Create Artifact) - Compiles each C file
   build_c_project:
     runs-on: ubuntu-latest
     
@@ -16,41 +16,74 @@ jobs:
         uses: actions/checkout@v4 
         
       - name: Install C compiler tools
+        # Ensures that the GCC compiler and related tools are available
         run: sudo apt-get update && sudo apt-get install -y build-essential
         
-      - name: Compile the C Project Executable
-        run: gcc -o c_project *.c
-        
-      - name: Check for compiled executable
+      # CORE FIX: Compile and test each individual C file
+      - name: Compile and Test Individual C Programs
         run: |
-          if [ -f c_project ]; then
-            echo "SUCCESS: The C project compiled successfully."
-          else
-            echo "FAILURE: Compilation failed."
-            exit 1
-          fi
+          # The Bash script below iterates through all files ending in .c
+          # If any single compilation fails, the 'exit 1' command will immediately
+          # fail this step, and the entire pipeline will stop.
           
-      - name: Upload compiled executable as artifact
+          echo "Starting compilation and testing for all C files..."
+          
+          # Loop through every C file in the directory
+          for c_file in *.c; do
+            # project_name will be the file name without the .c extension (e.g., 'contact')
+            project_name=$(basename $c_file .c)
+            
+            echo "--- Compiling $c_file to $project_name ---"
+            
+            # Compile the single C file into an executable named after the project
+            gcc -o $project_name $c_file
+            
+            # $? holds the exit status of the previous command (gcc). 0 means success.
+            if [ $? -eq 0 ]; then
+              echo "SUCCESS: $c_file compiled. Running smoke test..."
+              
+              # Execute the compiled program
+              ./$project_name
+              
+              # We save one of the executables for the next CD step (optional)
+              if [ "$project_name" == "todo" ]; then
+                cp todo todo_app_for_deploy
+              fi
+              
+              echo "-----------------------------------"
+            else
+              echo "FAILURE: $c_file compilation failed!"
+              # Crucially, exit with code 1 to fail the GitHub Action job
+              exit 1 
+            fi
+          done
+          echo "All C projects successfully compiled and tested!"
+          
+      # Since we only upload one artifact, we choose the 'todo' project as an example
+      - name: Upload one compiled executable as artifact for CD
         uses: actions/upload-artifact@v4
         with:
-          name: compiled-c-executable
-          path: c_project
+          name: todo-c-executable
+          path: todo_app_for_deploy
 
-  # Job 2: CD (Deployment) - Note the indentation here!
-  # It is aligned with 'build_c_project' above it.
+
+  # Job 2: CD (Deployment) - Only runs if Job 1 succeeds
   deploy:
-    # This job MUST wait until the 'build_c_project' job is successful
+    # This ensures deployment only happens with successfully built code
     needs: build_c_project 
     runs-on: ubuntu-latest
     
     steps:
-      - name: Download the compiled artifact
+      - name: Download the verified artifact
         uses: actions/download-artifact@v4
         with:
-          name: compiled-c-executable
+          name: todo-c-executable
           
       - name: Verify artifact and simulate deployment
         run: |
-          ls -l # Show the downloaded 'c_project' file
-          echo "Deployment initiated for the C executable..."
+          # 'ls -l' confirms the downloaded file ('todo_app_for_deploy') is present
+          ls -l 
+          echo "--- Beginning Continuous Deployment ---"
+          echo "Deploying verified 'todo_app_for_deploy' to staging environment..."
+          # This is the point where you would add your actual deployment commands (SCP, AWS CLI, etc.)
           echo "SUCCESS: Deployment simulation complete."
