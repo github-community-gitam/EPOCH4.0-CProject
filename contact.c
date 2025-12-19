@@ -1,14 +1,27 @@
 #include <stdio.h>
+#include <string.h>
+
+#define MAX 20
+#define FILE_NAME "contacts.txt"
 
 struct Contact {
-    char name[50];   // stores contact name
-    char phone[20];  // stores contact phone number
+    char name[50];
+    char phone[20];
 };
 
+/* Function declarations */
+void loadContacts(struct Contact list[], int *count);
+void saveContacts(struct Contact list[], int count);
+void addContact(struct Contact list[], int *count);
+void viewContacts(struct Contact list[], int count);
+
 int main() {
-    struct Contact list[20];  // list of contacts
-    int count = 0;            // number of saved contacts
+    struct Contact list[MAX];
+    int count = 0;
     int choice;
+
+    /* Load contacts from file at startup */
+    loadContacts(list, &count);
 
     while (1) {
         printf("\n--- CONTACT BOOK ---\n");
@@ -16,31 +29,90 @@ int main() {
         printf("2. View Contacts\n");
         printf("3. Exit\n");
         printf("Enter choice: ");
-        scanf("%d", &choice);
 
-        if (choice == 1) {
-            // Add a new contact
-            printf("Enter name: ");
-            getchar();
-            fgets(list[count].name, 50, stdin);
-
-            printf("Enter phone: ");
-            fgets(list[count].phone, 20, stdin);
-
-            count++;
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+            while (getchar() != '\n');
+            continue;
         }
-        else if (choice == 2) {
-            // Show all saved contacts
-            printf("\nContacts:\n");
-            for (int i = 0; i < count; i++) {
-                printf("%s - %s", list[i].name, list[i].phone);
-            }
-        }
-        else if (choice == 3) {
-            // exit
-            break;
+
+        switch (choice) {
+            case 1:
+                addContact(list, &count);
+                break;
+            case 2:
+                viewContacts(list, count);
+                break;
+            case 3:
+                saveContacts(list, count);
+                printf("Contacts saved. Exiting...\n");
+                return 0;
+            default:
+                printf("Invalid choice. Try again.\n");
         }
     }
-
-    return 0;
 }
+
+/* Load contacts from file */
+void loadContacts(struct Contact list[], int *count) {
+    FILE *fp = fopen(FILE_NAME, "r");
+    if (fp == NULL) return;
+
+    while (fscanf(fp, "%49[^,],%19[^\n]\n",
+                  list[*count].name,
+                  list[*count].phone) == 2) {
+        (*count)++;
+        if (*count >= MAX) break;
+    }
+
+    fclose(fp);
+}
+
+/* Save contacts to file */
+void saveContacts(struct Contact list[], int count) {
+    FILE *fp = fopen(FILE_NAME, "w");
+    if (fp == NULL) {
+        printf("Error saving contacts.\n");
+        return;
+    }
+
+    for (int i = 0; i < count; i++) {
+        fprintf(fp, "%s,%s\n", list[i].name, list[i].phone);
+    }
+
+    fclose(fp);
+}
+
+/* Add a new contact */
+void addContact(struct Contact list[], int *count) {
+    if (*count >= MAX) {
+        printf("Contact list is full.\n");
+        return;
+    }
+
+    printf("Enter name: ");
+    getchar();
+    fgets(list[*count].name, 50, stdin);
+    list[*count].name[strcspn(list[*count].name, "\n")] = '\0';
+
+    printf("Enter phone: ");
+    fgets(list[*count].phone, 20, stdin);
+    list[*count].phone[strcspn(list[*count].phone, "\n")] = '\0';
+
+    (*count)++;
+    printf("Contact added successfully.\n");
+}
+
+/* View all contacts */
+void viewContacts(struct Contact list[], int count) {
+    if (count == 0) {
+        printf("No contacts available.\n");
+        return;
+    }
+
+    printf("\n--- SAVED CONTACTS ---\n");
+    for (int i = 0; i < count; i++) {
+        printf("%d. %s - %s\n", i + 1, list[i].name, list[i].phone);
+    }
+}
+
