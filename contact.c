@@ -15,6 +15,7 @@ void saveContacts(struct Contact list[], int count);
 void addContact(struct Contact list[], int *count);
 void viewContacts(struct Contact list[], int count);
 void deleteContact(struct Contact list[], int *count);
+int isPhoneValid(char phone[]);
 
 
 int main() {
@@ -105,6 +106,11 @@ void addContact(struct Contact list[], int *count) {
     fgets(list[*count].phone, 20, stdin);
     list[*count].phone[strcspn(list[*count].phone, "\n")] = '\0';
 
+    if(!isPhoneValid(list[*count].phone)){
+        printf("Invalid phone number. Please enter a 10-digit number.\n");
+        return;
+    }
+
     (*count)++;
     printf("Contact added successfully.\n");
 }
@@ -145,4 +151,15 @@ void deleteContact(struct Contact list[], int *count) {
     (*count)--;
 
     printf("Contact deleted successfully.\n");
+}
+int isPhoneValid(char phone[]){
+    if(strlen(phone) != 10){
+        return 0;
+    }
+
+    for(int i=0;i<10;i++){
+        if(phone[i] < '0' || phone[i] > '9')
+            return 0;
+    }
+    return 1;
 }
