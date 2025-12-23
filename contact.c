@@ -137,7 +137,7 @@ void deleteContact(struct Contact list[], int *count) {
 
     viewContacts(list, *count);
 
-    printf("Enter contact number to delete: ");
+    printf("Enter index of the contact number to delete: ");
     if (scanf("%d", &index) != 1 || index < 1 || index > *count) {
         printf("Invalid choice.\n");
         while (getchar() != '\n');
