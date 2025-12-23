@@ -71,6 +71,8 @@ To make a contribution, follow these steps (explained fully in [Contributing Gui
 - Commit and push  
 - Open a Pull Request  
 
+You can also refer to this [resource](https://medium.com/@muskansngh15/from-git-to-github-initialise-a-repository-add-your-changes-commit-and-more-d3eef134af75) for better understanding.
+
 ---
 
 ## Purpose of This Repository
