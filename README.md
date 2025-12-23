@@ -17,15 +17,6 @@ This repository currently contains the following C mini-programs:
 - [Expense Tracker](https://github.com/github-community-gitam/EPOCH4.0-CProject/blob/main/expense.c)
 - [Student Management System](https://github.com/github-community-gitam/EPOCH4.0-CProject/blob/main/student.c)
 
-These programs are structured in a simple and beginner-friendly way so contributors can easily:
-
-- Add features  
-- Improve program logic  
-- Clean and organise code  
-- Add menus, sorting, searching  
-- Add file handling  
-- Improve formatting and user experience  
-
 ---
 
 ## Contribution Rules
