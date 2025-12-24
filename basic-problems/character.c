@@ -2,20 +2,24 @@
 // if it's vowel: print 1, if it's consonant: print 0, and if anything else: print -1.
 
 #include<stdio.h>
+#include<string.h>
+#include<ctype.h>
 int main(){
-    char ch='A';
-    int res;
-    if(ch>='A' && ch<='Z')
-    {
-        if(ch=='A'|| ch=='E'|| ch=='I'|| ch=='O'|| ch=='U')
-            res=1;
-        else
-            res=0;
+    char word;
+    printf("Enter the character:");
+    scanf("%c",&word);
+    word = tolower(word);
+    if(isalpha(word)){
+        if(word=='a' || word=='e' || word=='i' || word=='o' || word=='u'){
+            printf("1\n");
+        }
+        else{
+            printf("0\n");
+        }
     }
     else{
-        res=-1;
+        printf("-1\n");
     }
-    printf("%d",res);
 }
 
 /*you can contribute by 
