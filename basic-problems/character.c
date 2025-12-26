@@ -1,24 +1,28 @@
-//Check whether a character is vowel or consonant; 
-// if it's vowel: print 1, if it's consonant: print 0, and if anything else: print -1.
+// Check whether a character is vowel or consonant
+// if it's vowel: print 1, if it's consonant: print 0, and if anything else: print -1
 
-#include<stdio.h>
-int main(){
-    char ch='A';
-    int res;
-    if(ch>='A' && ch<='Z')
-    {
-        if(ch=='A'|| ch=='E'|| ch=='I'|| ch=='O'|| ch=='U')
-            res=1;
-        else
-            res=0;
+#include <stdio.h>
+
+int main() {
+    char ch;
+    printf("Enter a character: ");
+    scanf("%c", &ch);
+    
+    int result;
+    
+    // Check if character is an alphabet (fixed the bug: ch<='b' should be ch<='z')
+    if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z')) {
+        // Check if vowel
+        if (ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U' ||
+            ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+            result = 1; // Vowel
+        } else {
+            result = 0; // Consonant
+        }
+    } else {
+        result = -1; // Not an alphabet
     }
-    else{
-        res=-1;
-    }
-    printf("%d",res);
+    
+    printf("%d\n", result);
+    return 0;
 }
-
-/*you can contribute by 
-1. writing a program that takes user input
-2. works both for uppercase and lowercase
-*/
